@@ -23,7 +23,7 @@ function loadSheetData() {
 function createChart(canvasId, data) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) {
-        console.error(Canvas ${canvasId} not found);
+        console.error(`Canvas ${canvasId} not found`);
         return;
     }
 
