@@ -12,7 +12,7 @@ function loadSheetData() {
         .then(data => {
             if (data.values && data.values.length > 1) {
                 const latestRow = data.values[data.values.length - 1];
-                updatePlantInfo(latestRow);
+             //   updatePlantInfo(latestRow);
                 updateCharts(data.values.slice(1));
             }
         })
