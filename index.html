@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Monitoring</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Plant Monitoring</h1>
+    <div class="container">
+        <!-- Plant Information Section -->
+        <div class="column">
+            <div class="transparent-container">
+                <h2>Bell Pepper Plant</h2>
+                <img src="peppers.png" alt="Bell Pepper Plant" id="plant-image">
+                <p class="justified">
+                    The plant is a tropical perennial but is usually grown as an annual vegetable. It grows upright and bushy, with dark green lance-shaped leaves, small white flowers, and edible fruits. The fruits range in color from green, yellow, orange, red, purple, black, and white.
+                </p>
+                <div id="plant-info">
+                    <p>Date: <span id="date">Loading...</span></p>
+                    <p>Time: <span id="time">Loading...</span></p>
+                    <p>pH Level: <span id="pH">Loading...</span></p>
+                    <p>Ambient Temperature: <span id="ambient-temp">Loading...</span></p>
+                    <p>Water Temperature: <span id="water-temp">Loading...</span></p>
+                    <p>Humidity: <span id="humidity">Loading...</span></p>
+                    <p>Pressure: <span id="pressure">Loading...</span></p>
+                    <p>Light Level A: <span id="light-a">Loading...</span></p>
+                    <p>Light Level B: <span id="light-b">Loading...</span></p>
+                    
+                </div>
+                <!-- Historical Data Section -->
+                <div id="historical-data">
+                    <h3>Historical Data</h3>
+                    <input type="date" id="date-picker">
+                    <button onclick="fetchHistoricalData()">View Data</button>
+                    <div id="historical-info"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Graphs Section -->
+        <div class="column scrollable">
+            <canvas id="pH-graph"></canvas>
+            <canvas id="humidity-graph"></canvas>
+            <canvas id="temperature-graph"></canvas>
+            <canvas id="light-graph"></canvas>
+            <canvas id="pressure-graph"></canvas>
+        </div>
+    </div>
+    <script src="./scripts.js" defer></script>
+</body>
+</html>
+
