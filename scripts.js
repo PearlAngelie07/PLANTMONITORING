@@ -10,7 +10,7 @@ function loadSheetData() {
         .then(response => response.json())
         .then(data => {
             const rows = data.values;
-
+            alert(data);
             
             if (rows.length > 1) {
                 const latestRow = rows[rows.length - 1];
@@ -91,7 +91,7 @@ function updateCharts(rows) {
         { label: 'Light Level A', data: lightACleaned.data, borderColor: 'rgba(255, 206, 86, 1)' },
         { label: 'Light Level B', data: lightBCleaned.data, borderColor: 'rgba(75, 192, 192, 1)' }
     ]);
-    renderChart('pressure-graph', 'Pressure', pressureCleaned.labels, pressureCleaned.data, 'rgba(255, 159, 64, 1)');
+    renderChart('pressure-graphpressure-graph', 'Pressure', pressureCleaned.labels, pressureCleaned.data, 'rgba(255, 159, 64, 1)');
 }
 
 /// Render a chart
@@ -174,7 +174,7 @@ function fetchHistoricalData() {
 loadSheetData();
 
 
-// Constants for Google Sheets API
+// // Constants for Google Sheets API
 // const spreadsheetId = '1nZM9HXqfLPM897tqChxdVPGa0f4f3sjYW_isphqAoDI';
 // const sheetName = 'Data1';
 // const apiKey = 'AIzaSyBLH7LKKBkGzBhQhzo4hiFZ765HDJMDj8E';
@@ -395,4 +395,4 @@ loadSheetData();
 //     // Refresh data every 5 minutes
 //     setInterval(loadSheetData, 5 * 60 * 1000);
 // });
-// //sheets.googleapis.com
+// sheets.googleapis.com
