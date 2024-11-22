@@ -12,11 +12,32 @@ function loadSheetData() {
         .then(data => {
             if (data.values && data.values.length > 1) {
                 const latestRow = data.values[data.values.length - 1];
-             //   updatePlantInfo(latestRow);
+                updatePlantInfo(latestRow);
                 updateCharts(data.values.slice(1));
             }
         })
         .catch(error => console.error('Error:', error));
+}
+
+function updatePlantInfo(row) {
+    const [date, time, pH, ambientTemp, waterTemp, humidity, lightA, lightB, pressure] = row;
+    
+    updateElement('date', date);
+    updateElement('time', time);
+    updateElement('pH', pH);
+    updateElement('ambient-temp', `${ambientTemp}°C`);
+    updateElement('water-temp', `${waterTemp}°C`);
+    updateElement('humidity', `${humidity}%`);
+    updateElement('pressure', pressure);
+    updateElement('light-a', lightA);
+    updateElement('light-b', lightB);
+}
+
+function updateElement(id, value) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.innerText = value || 'N/A';
+    }
 }
 
 // Rest of the code remains the same, just replace all instances of window.charts with chartInstances
