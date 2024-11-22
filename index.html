@@ -3,53 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plant Monitoring</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <title>Bell Pepper Monitoring</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #E84E40;   /* Bell pepper red */
+            --secondary-color: #4CAF50; /* Plant green */
+            --background: #F5F5F5;
+            --card-bg: #FFFFFF;
+            --text: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h2, h3 {
+            color: var(--secondary-color);
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .transparent-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        #plant-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: block;
+            margin: 1rem auto;
+        }
+
+        .justified {
+            text-align: justify;
+            margin: 1rem 0;
+            color: #666;
+        }
+
+        #plant-info p {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        #plant-info span {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        #historical-data {
+            margin-top: 2rem;
+        }
+
+        input[type="date"] {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 1rem;
+        }
+
+        button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        canvas {
+            height: 150px !important;
+            width: 100% !important;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
-<!-- <body>
-    <h1>Plant Monitoring</h1>
-    <div class="container">
-         Plant Information Section  
-        <div class="column">
-            <div class="transparent-container">
-                <h2>Bell Pepper Plant</h2>
-                <img src="peppers.png" alt="Bell Pepper Plant" id="plant-image">
-                <p class="justified">
-                    The plant is a tropical perennial but is usually grown as an annual vegetable. It grows upright and bushy, with dark green lance-shaped leaves, small white flowers, and edible fruits. The fruits range in color from green, yellow, orange, red, purple, black, and white.
-                </p>
-                <div id="plant-info">
-                    <p>Date: <span id="date">Loading...</span></p>
-                    <p>Time: <span id="time">Loading...</span></p>
-                    <p>pH Level: <span id="pH">Loading...</span></p>
-                    <p>Ambient Temperature: <span id="ambient-temp">Loading...</span></p>
-                    <p>Water Temperature: <span id="water-temp">Loading...</span></p>
-                    <p>Humidity: <span id="humidity">Loading...</span></p>
-                    <p>Pressure: <span id="pressure">Loading...</span></p>
-                    <p>Light Level A: <span id="light-a">Loading...</span></p>
-                    <p>Light Level B: <span id="light-b">Loading...</span></p>
-                    
-                </div>
-                  Historical Data Section  
-                <div id="historical-data">
-                    <h3>Historical Data</h3>
-                    <input type="date" id="date-picker">
-                    <button onclick="fetchHistoricalData()">View Data</button>
-                    <div id="historical-info"></div>
-                </div>
-            </div>
-        </div>
-          Graphs Section  
-        <div class="column scrollable">
-            <canvas id="pH-graph"></canvas>
-            <canvas id="humidity-graph"></canvas>
-            <canvas id="temperature-graph"></canvas>
-            <canvas id="light-graph"></canvas>
-            <canvas id="pressure-graph"></canvas>
-        </div>
-    </div>
-    <script src="./scripts.js" defer></script>
-</body> -->
 <body>
     <h1>Bell Pepper Monitor</h1>
     <div class="container">
@@ -92,4 +174,3 @@
     <script src="./scripts.js" defer></script>
 </body>
 </html>
-
