@@ -395,4 +395,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Refresh data every 5 minutes
     setInterval(loadSheetData, 5 * 60 * 1000);
 });
-sheets.googleapis.com
+//sheets.googleapis.com
