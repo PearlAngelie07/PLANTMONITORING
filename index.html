@@ -7,10 +7,10 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<!-- <body>
     <h1>Plant Monitoring</h1>
     <div class="container">
-        <!-- Plant Information Section -->
+         Plant Information Section  
         <div class="column">
             <div class="transparent-container">
                 <h2>Bell Pepper Plant</h2>
@@ -30,7 +30,7 @@
                     <p>Light Level B: <span id="light-b">Loading...</span></p>
                     
                 </div>
-                <!-- Historical Data Section -->
+                  Historical Data Section  
                 <div id="historical-data">
                     <h3>Historical Data</h3>
                     <input type="date" id="date-picker">
@@ -39,7 +39,48 @@
                 </div>
             </div>
         </div>
-        <!-- Graphs Section -->
+          Graphs Section  
+        <div class="column scrollable">
+            <canvas id="pH-graph"></canvas>
+            <canvas id="humidity-graph"></canvas>
+            <canvas id="temperature-graph"></canvas>
+            <canvas id="light-graph"></canvas>
+            <canvas id="pressure-graph"></canvas>
+        </div>
+    </div>
+    <script src="./scripts.js" defer></script>
+</body> -->
+<body>
+    <h1>Bell Pepper Monitor</h1>
+    <div class="container">
+        <div class="column">
+            <div class="transparent-container">
+                <h2>Bell Pepper Plant</h2>
+                <img src="/api/placeholder/300/200" alt="Bell Pepper Plant" id="plant-image">
+                <p class="justified">
+                    The bell pepper plant is a tropical perennial grown as an annual vegetable. 
+                    It produces colorful fruits ranging from green to red, perfect for monitoring 
+                    growth conditions and optimizing yield.
+                </p>
+                <div id="plant-info">
+                    <p>Date: <span id="date">Loading...</span></p>
+                    <p>Time: <span id="time">Loading...</span></p>
+                    <p>pH Level: <span id="pH">Loading...</span></p>
+                    <p>Ambient Temperature: <span id="ambient-temp">Loading...</span></p>
+                    <p>Water Temperature: <span id="water-temp">Loading...</span></p>
+                    <p>Humidity: <span id="humidity">Loading...</span></p>
+                    <p>Pressure: <span id="pressure">Loading...</span></p>
+                    <p>Light Level A: <span id="light-a">Loading...</span></p>
+                    <p>Light Level B: <span id="light-b">Loading...</span></p>
+                </div>
+                <div id="historical-data">
+                    <h3>Historical Data</h3>
+                    <input type="date" id="date-picker">
+                    <button onclick="fetchHistoricalData()">View Data</button>
+                    <div id="historical-info"></div>
+                </div>
+            </div>
+        </div>
         <div class="column scrollable">
             <canvas id="pH-graph"></canvas>
             <canvas id="humidity-graph"></canvas>
