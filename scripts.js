@@ -1,7 +1,7 @@
 const spreadsheetId = '1nZM9HXqfLPM897tqChxdVPGa0f4f3sjYW_isphqAoDI';
 const sheetName = 'Data1';
 const apiKey = 'AIzaSyBLH7LKKBkGzBhQhzo4hiFZ765HDJMDj8E';
-const apiUrl = https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey};
+const apiUrl = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey}`;
 
 // Initialize charts storage
 const chartInstances = {};
