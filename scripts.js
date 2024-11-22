@@ -3,8 +3,8 @@ const sheetName = 'Data1';
 const apiKey = 'AIzaSyBLH7LKKBkGzBhQhzo4hiFZ765HDJMDj8E';
 const apiUrl = https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${apiKey};
 
-windows.charts = {};
-
+// Initialize charts storage
+const chartInstances = {};
 
 function loadSheetData() {
     fetch(apiUrl)
@@ -19,41 +19,21 @@ function loadSheetData() {
         .catch(error => console.error('Error:', error));
 }
 
-function updatePlantInfo(row) {
-    const [date, time, pH, ambientTemp, waterTemp, humidity, lightA, lightB, pressure] = row;
-    
-    updateElement('date', date);
-    updateElement('time', time);
-    updateElement('pH', pH);
-    updateElement('ambient-temp', `${ambientTemp}°C`);
-    updateElement('water-temp', `${waterTemp}°C`);
-    updateElement('humidity', `${humidity}%`);
-    updateElement('pressure', pressure);
-    updateElement('light-a', lightA);
-    updateElement('light-b', lightB);
-}
-
-function updateElement(id, value) {
-    const element = document.getElementById(id);
-    if (element) {
-        element.innerText = value || 'N/A';
-    }
-}
-
+// Rest of the code remains the same, just replace all instances of window.charts with chartInstances
 function createChart(canvasId, data) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) {
-        console.error(`Canvas ${canvasId} not found`);
+        console.error(Canvas ${canvasId} not found);
         return;
     }
 
     const ctx = canvas.getContext('2d');
     
-    if (window.charts[canvasId]) {
-        window.charts[canvasId].destroy();
+    if (chartInstances[canvasId]) {
+        chartInstances[canvasId].destroy();
     }
 
-    window.charts[canvasId] = new Chart(ctx, {
+    chartInstances[canvasId] = new Chart(ctx, {
         type: 'line',
         data: data,
         options: {
@@ -72,7 +52,6 @@ function createChart(canvasId, data) {
         }
     });
 }
-
 function updateCharts(rows) {
     const timeLabels = rows.slice(-20).map(row => row[1]);
     
