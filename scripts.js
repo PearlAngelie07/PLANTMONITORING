@@ -148,6 +148,30 @@ function updateCharts(rows) {
     });
 }
 
+// function fetchHistoricalData() {
+//     const selectedDate = document.getElementById('date-picker').value;
+//     if (!selectedDate) return;
+//     console.log(selectedDate);
+//     fetch(apiUrl)
+//         .then(response => response.json())
+//         .then(data => {
+//             console.log(data);
+//             const rows = data.values.filter(row => row[0] === selectedDate);
+//             document.getElementById('historical-info').innerHTML = rows.map(row => `
+//                 <p>Time: ${row[1]}</p>
+//                 <p>pH: ${row[2]}</p>
+//                 <p>Ambient Temp: ${row[3]}°C</p>
+//                 <p>Water Temp: ${row[4]}°C</p>
+//                 <p>Humidity: ${row[5]}%</p>
+//                 <p>Pressure: ${row[8]}</p>
+//                 <p>Light Level A: ${row[6]}</p>
+//                 <p>Light Level B: ${row[7]}</p>
+//                 <hr>
+//             `).join('') || 'No data found for selected date';
+//         })
+//         .catch(error => console.error('Error:', error));
+// }
+
 function fetchHistoricalData() {
     const selectedDate = document.getElementById('date-picker').value;
     if (!selectedDate) return;
@@ -155,18 +179,29 @@ function fetchHistoricalData() {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            const rows = data.values.filter(row => row[0] === selectedDate);
-            document.getElementById('historical-info').innerHTML = rows.map(row => `
-                <p>Time: ${row[1]}</p>
-                <p>pH: ${row[2]}</p>
-                <p>Ambient Temp: ${row[3]}°C</p>
-                <p>Water Temp: ${row[4]}°C</p>
-                <p>Humidity: ${row[5]}%</p>
-                <p>Pressure: ${row[8]}</p>
-                <p>Light Level A: ${row[6]}</p>
-                <p>Light Level B: ${row[7]}</p>
-                <hr>
-            `).join('') || 'No data found for selected date';
+            // Convert selected date to match spreadsheet date format
+            const formattedDate = new Date(selectedDate).toLocaleDateString();
+            
+            // Filter rows that match the exact date
+            const rows = data.values.filter(row => {
+                const rowDate = new Date(row[0]).toLocaleDateString();
+                return rowDate === formattedDate;
+            });
+      console.log(rows);
+            const dataDisplay = document.getElementById('historical-info');
+           
+            dataDisplay.innerHTML = 
+                rows.map(row => `
+                    <p>Time: ${row[1]}</p>
+                    <p>pH: ${row[2]}</p>
+                    <p>Ambient Temp: ${row[3]}°C</p>
+                    <p>Water Temp: ${row[4]}°C</p>
+                    <p>Humidity: ${row[5]}%</p>
+                    <p>Pressure: ${row[8]}</p>
+                    <p>Light Level A: ${row[6]}</p>
+                    <p>Light Level B: ${row[7]}</p>
+                    <hr>
+                `).join('') || 'No data found for selected date';
         })
         .catch(error => console.error('Error:', error));
 }
